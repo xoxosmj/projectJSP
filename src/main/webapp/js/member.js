@@ -12,7 +12,8 @@ function checkId() {
 
 //이메일
 function changeEmail() {
-    document.getElementById("email2").value = document.getElementById("email3").value;
+   document.getElementById("email2").value=document.getElementById("email3")
+
 }
 
 //회원가입

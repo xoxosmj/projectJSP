@@ -139,13 +139,12 @@
                 <input type="text" name="email1" id="email1"/> @
                 <input type="text" name="email2" id="email2"/>
 
-                <input type="email" name="email3" list="email3_list" id="email3" oninput="changeEmail"/>
-                <datalist id="email3_list">
-                    <option value="직접입력"></option>
-                    <option value="naver.com"/>
-                    <option value="google.com"/>
-                    <option value="daum.net"/>
-                </datalist>
+                <select name="email3" id="email3" onchange="changeEmail()">
+                    <option value="">직접 입력</option>
+                    <option value="naver.com">네이버</option>
+                    <option value="google.com">구글</option>
+                    <option value="daum.net">다음</option>
+                </select>
             </td>
         </tr>
         <tr>
