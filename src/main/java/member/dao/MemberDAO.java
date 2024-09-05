@@ -2,18 +2,20 @@ package member.dao;
 
 import member.bean.MemberDTO;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 import java.sql.*;
 
 public class MemberDAO {
 
-    private String driver = "oracle.jdbc.driver.OracleDriver";
-    private String url = "jdbc:oracle:thin:@localhost:1521:xe";
-    private String username = "c##java";
-    private String password = "1234";
-
     private Connection conn = null;
     private PreparedStatement pstmt = null;
     private ResultSet rs = null;
+
+    private DataSource ds; //커넥션풀
+
 
     private static MemberDAO memberDAO = new MemberDAO();
 
@@ -22,20 +24,12 @@ public class MemberDAO {
     }
 
     public MemberDAO() {
+        Context ctx = null;
         try {
-            Class.forName(driver);
-        } catch (ClassNotFoundException e) {
+            ctx = new InitialContext(); //Context는 인터페이스라 바로 new가 안되고 메소드를 호출해서 생성
+            ds = (DataSource) ctx.lookup("java:comp/env/jdbc/oracle"); //톰캣의 경우에만 앞에 접두사로 java:comp/env/가 붙는다
+        } catch (NamingException e) {
             e.printStackTrace();
-        }
-
-    }
-
-    public void getConnection() {
-        try {
-            conn = DriverManager.getConnection(url, username, password);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            //오류나면 conn=null 추가
         }
 
     }
@@ -43,11 +37,11 @@ public class MemberDAO {
 
     public boolean isExistId(String id) {
         boolean exist = false;
-        getConnection();
 
         String sql = "select * from member where id=?";
 
         try {
+            conn = ds.getConnection();
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, id);
             rs = pstmt.executeQuery();
@@ -76,11 +70,11 @@ public class MemberDAO {
 
 
     public boolean memberWrite(MemberDTO memberDTO) {
-        getConnection();
-        boolean success = false;
+       boolean success = false;
 
         String sql = "insert into member values(?,?,?,?,?,?,?,?,?,?,?,?,sysdate)";
         try {
+            conn = ds.getConnection();
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, memberDTO.getName());
             pstmt.setString(2, memberDTO.getId());
