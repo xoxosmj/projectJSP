@@ -64,7 +64,7 @@
 %>
 
 <script type="text/javascript">
-    window.onload = function(){
+    window.onload = function () {
         alert("회원가입을 축하합니다.")
         location.href = "../index.jsp";
     }
