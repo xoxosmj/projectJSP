@@ -42,6 +42,7 @@
 <script type="text/javascript">
     function checkIdClose(id) {
         opener.document.getElementById("id").value = id; //중요 열려있는 창들중에 id 속성이 id인걸찾아라
+        opener.document.getElementById("check").value = id;
         window.close();
         opener.document.getElementById("pwd").focus();
     }

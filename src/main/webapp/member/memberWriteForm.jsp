@@ -17,11 +17,12 @@
             margin: 0 auto;
         }
 
-        div{
-            color:red;
+        div {
+            color: red;
             font-size: 8pt;
             font-weight: bold;
         }
+
         table {
             margin-top: 100px;
             width: 550px;
@@ -96,7 +97,7 @@
 </head>
 <body>
 
-<form id="join" action="/memberJoin" method="post">
+<form id="join" name="join" method="post" action="memberWrite.jsp">
     <table>
         <tr>
             <td>* 이름</td>
@@ -109,6 +110,7 @@
             <td>
                 <input type="text" id="id" name="id" placeholder="아이디입력"/>
                 <button type="button" onclick="checkId()">중복체크</button>
+                <input type="hidden" id="check" value="">
                 <div id="error-id" class="error"></div>
             </td>
         </tr>
@@ -127,14 +129,15 @@
         <tr>
             <td>성별</td>
             <td>
-                <input type="radio" name="gender" id="m" value="남자" checked/><label for="m"> 남자</label>&nbsp;
-                <input type="radio" name="gender" id="w" value="여자"/><label for="w"> 여자</label>
+                <input type="radio" name="gender" id="m" value="m" checked/><label for="m"> 남자</label>&nbsp;
+                <input type="radio" name="gender" id="w" value="f"/><label for="w"> 여자</label>
             </td>
         </tr>
         <tr>
             <td>이메일</td>
             <td>
-                <input type="text" name="email1" id="email1"/> @ <input type="text" name="email2" id="email2"/>
+                <input type="text" name="email1" id="email1"/> @
+                <input type="text" name="email2" id="email2"/>
 
                 <input type="email" name="email3" list="email3_list" id="email3" oninput="changeEmail"/>
                 <datalist id="email3_list">
@@ -171,7 +174,10 @@
             </td>
         </tr>
         <tr>
-            <td id="submitBtn" colspan="2"><input type="submit" value="회원가입"/><input type="reset" value="다시입력"/></td>
+            <td id="submitBtn" colspan="2">
+                <input type="button" value="회원가입" onclick="memberWrite()"/>
+                <input type="reset" value="다시입력"/>
+            </td>
         </tr>
     </table>
 </form>

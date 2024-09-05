@@ -2,13 +2,38 @@
 function checkId() {
     let id = document.getElementById('id').value;
 
-    if(id === "")
-    {
-        document.getElementById('error-id').innerHTML="먼저 아이디를 입력하세요";
+    if (id === "") {
+        document.getElementById('error-id').innerHTML = "먼저 아이디를 입력하세요";
+    } else {
+        window.open("./checkId.jsp?id=" + id, "myWindow", "width=450,height=150 top=100 left=200") //타겟명을 주면 똑같은창이 반복되서 생성안된다
+        //아이디를 실어보내기위해 url 뒤에 ?변수=값 을 추가해서 보냄
     }
-    else{
-        window.open("./checkId.jsp?id="+id,"myWindow","width=450,height=150 top=100 left=200") //타겟명을 주면 똑같은창이 반복되서 생성안된다
-    //아이디를 실어보내기위해 url 뒤에 ?변수=값 을 추가해서 보냄
+}
+
+//이메일
+function changeEmail() {
+    document.getElementById("email2").value = document.getElementById("email3").value;
+}
+
+//회원가입
+function memberWrite() {
+    document.getElementById("error-name").innerHTML = "";
+    document.getElementById("error-id").innerHTML = "";
+    document.getElementById("error-pwd").innerHTML = "";
+    document.getElementById("error-pwdChk").innerHTML = "";
+
+    if (document.getElementById("name").value === "") {
+        document.getElementById('error-name').innerHTML = "이름 입력";
+    } else if (document.getElementById("id").value === "") {
+        document.getElementById("error-id").innerHTML = "아이디 입력";
+    } else if (document.getElementById("pwd").value === "") {
+        document.getElementById("error-pwd").innerHTML = "비밀번호 입력";
+    } else if (document.getElementById("pwd").value !== document.getElementById("pwdChk").value) {
+        document.getElementById("error-pwdChk").innerHTML = "비밀번호가 맞지 않습니다";
+    } else if (document.getElementById("id").value !== document.getElementById("check").value) {
+        document.getElementById("error-id").innerHTML = "중복체크 하세요";
+    } else {
+        document.join.submit();
     }
 }
 
@@ -38,39 +63,6 @@ function checkPost() {
     }).open();
 }
 
-<!-- 제목, 내용은 유효성검사 하기 -->
-$(function () {
 
-    $('input[type="submit"]').click(function () {
-        $('#error-name').empty();
-        $('#error-id').empty();
-        $('#error-pwd').empty();
-        $('#error-pwdChk').empty();
 
-        if (!$('#name').val()) {
-            $('#error-name').html('이름을 입력하세요.');
-            $('#name').focus();
-        } else if (!$('#id').val()) {
-            $('#error-id').html('아이디를 입력하세요.');
-            $('#id').focus();
-        } else if (!$('#pwd').val()) {
-            $('#error-pwd').html('비밀번호를 입력하세요.');
-            $('#pwd').focus();
-        } else if (!$('#pwdChk').val()) {
-            $('#error-pwdChk').html('비밀번호 재확인을 입력하세요.');
-            $('#pwdChk').focus();
-        } else if ($('#pwd').val() != $('#pwdChk').val()) {
-            $('#error-pwdChk').html('비밀번호가 일치하지 않습니다.');
-            $('#pwdChk').val('');
-            $('#pwdChk').focus();
-        } else if ($('#isCheckId').val() != true) {
-            $('#error-id').html('아이디 중복체크를 확인하세요.');
-            $('#id').focus();
-        } else {
-            $('#join').submit();
-        }
-
-        return false;
-    })
-})
 
