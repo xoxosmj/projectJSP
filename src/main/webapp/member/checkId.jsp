@@ -35,7 +35,9 @@
 <%=id%>는 사용 가능
 <br><br>
 <input type="button" value="사용하기" onclick="checkIdClose('<%=id%>')"/> <!--아이디를 가져가라-->
+<%--
 <input type="button" value="다시찾기"/>
+--%>
 
 
 <%} %>

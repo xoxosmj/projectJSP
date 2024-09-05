@@ -5,123 +5,48 @@
   Time: PM 3:04
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
-
+    <link rel="stylesheet" href="../css/member.css">
     <style type="text/css">
-        * {
-            margin: 0 auto;
-        }
-
-        div {
-            color: red;
-            font-size: 8pt;
-            font-weight: bold;
-        }
-
-        table {
-            margin-top: 100px;
-            width: 550px;
-            height: 500px;
-            border-collapse: collapse;
-        }
-
-        table td {
-            padding-left: 15px;
-            border: 1px solid #ccc;
-        }
-
-        td:nth-child(1) {
-            width: 90px;
-        }
-
-        input {
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            padding: 5px 10px;
-        }
-
-        .btn {
-            padding: 3px 5px;
-            font-size: 0.8em;
-            cursor: pointer;
-        }
-
-        #email1, #email2 {
-            width: 100px;
-        }
-
-        #email3 {
-            width: 100px;
-        }
-
-        #tel2, #tel3 {
-            width: 50px;
-        }
-
-        #tel1 {
-            width: 60px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            padding: 3px 3px;
-        }
-
-        #zipcode {
-            width: 100px;
-            margin-bottom: 10px;
-        }
-
-        #addr1, #addr2 {
-            width: 300px;
-            margin-bottom: 5px;
-        }
-
-        #submitBtn {
-            text-align: center;
-        }
-
-        #submitBtn input[type="submit"] {
-            margin-right: 5px;
-        }
-
-        .error {
-            margin-top: 5px;
-            font-size: 0.5em;
-            color: tomato;
-        }
+        /* ... 기존 CSS 스타일 ... */
     </style>
 </head>
 <body>
+<h1 align="center">
 
+    <img src="../image/1.png" width="70" height="70" alt="홈" onclick="location.href='../index.jsp'"
+         style="cursor: pointer">회원가입
+</h1>
 <form id="join" name="join" method="post" action="memberWrite.jsp">
     <table>
         <tr>
-            <td>* 이름</td>
+            <td>이름</td>
             <td><input type="text" id="name" name="name" placeholder="이름 입력"/>
                 <div id="error-name" class="error"></div>
             </td>
         </tr>
         <tr>
-            <td>* 아이디</td>
+            <td>아이디</td>
             <td>
-                <input type="text" id="id" name="id" placeholder="아이디입력"/>
+                <input type="text" id="id" name="id" placeholder="아이디 입력"/>
                 <button type="button" onclick="checkId()">중복체크</button>
                 <input type="hidden" id="check" value="">
                 <div id="error-id" class="error"></div>
             </td>
         </tr>
         <tr>
-            <td>* 비밀번호</td>
+            <td>비밀번호</td>
             <td><input type="password" id="pwd" name="pwd" placeholder="비밀번호 입력"/>
                 <div id="error-pwd" class="error"></div>
             </td>
         </tr>
         <tr>
-            <td>* 재확인</td>
+            <td>재확인</td>
             <td><input type="password" id="pwdChk" name="pwdChk" placeholder="비밀번호 입력"/>
                 <div id="error-pwdChk" class="error"></div>
             </td>
