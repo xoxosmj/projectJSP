@@ -22,7 +22,7 @@
     <img src="../image/1.png" width="70" height="70" alt="홈" onclick="location.href='../index.jsp'"
          style="cursor: pointer">회원가입
 </h1>
-<form id="join" name="join" method="post" action="memberWrite.jsp">
+<form id="join" name="join" method="post" action="write.jsp">
     <table>
         <tr>
             <td>이름</td>

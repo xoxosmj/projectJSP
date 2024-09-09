@@ -1,5 +1,6 @@
 <%@ page import="member.dao.MemberDAO" %>
-<%@ page import="java.net.URLEncoder" %><%--
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="member.bean.MemberDTO" %><%--
   Created by IntelliJ IDEA.
   User: bitcamp
   Date: 2024-09-05
@@ -14,18 +15,19 @@
 
     //DB
     MemberDAO memberDAO = MemberDAO.getInstance();
-    String name = memberDAO.memberLogin(id, pwd);
+    MemberDTO memberDTO = memberDAO.login(id,pwd);
 
 
 %>
 
 <%
-    if (name == null) {
+    if (memberDTO == null) {
         //페이지 이동
         response.sendRedirect("loginFail.jsp");
 
     } else {
-        //중요한 데이터를 주소표시줄에 실어서 보내지 말자
+
+    /*    //중요한 데이터를 주소표시줄에 실어서 보내지 말자
         //response.sendRedirect("loginOk.jsp?name=" + URLEncoder.encode(name, "UTF-8")+"&id="+id); //한글 깨짐 오류 방지 인코더메소드 호출
 
         //쿠키
@@ -38,9 +40,15 @@
         cookie2.setMaxAge(60*3*10);
         response.addCookie(cookie2); //클라이언트에 저장
 
+        */
+
         //세션
 
-        response.sendRedirect("loginOk.jsp"); //쿠키와 세션에 데이터를 넣어서 보낼거기때문에 주소만
+        session.setAttribute("memName", memberDTO.getName());
+        session.setAttribute("memId", memberDTO.getId());
+        session.setAttribute("memEmail", memberDTO.getEmail1()+"@"+memberDTO.getEmail2());
+        session.setAttribute("memDTO", memberDTO);
 
+        response.sendRedirect("loginOk.jsp");
    }
 %>

@@ -14,7 +14,7 @@
     <img src="../image/1.png" width="70" height="70" alt="홈" onclick="location.href='../index.jsp'"
          style="cursor: pointer">로그인
 </h1>
-<form id="memberLoginForm" name="memberLoginForm">
+<form id="loginForm" name="loginForm">
     <table border="1">
         <tr>
             <td>아이디</td>
@@ -36,7 +36,7 @@
                                 <input type="button" value="로그인" onclick="memberLogin()"/> 제이쿼리를 쓸거니까 onclick 대신 id를줌
                 --%>
                 <input type="button" value="로그인" id="loginBtn"/>
-                <input type="button" value="회원가입" onclick="location.href='memberWriteForm.jsp'"/>
+                <input type="button" value="회원가입" onclick="location.href='writeForm.jsp'"/>
             </td>
         </tr>
     </table>
@@ -56,8 +56,11 @@
             } else {
                 $.ajax({
                     type: 'post',
-                    url: 'memberLogin.jsp',
-                    data: 'id=' + $('#id').val() + '&pwd=' + $('#pwd').val(),
+                    url: 'login.jsp',
+                    data: {
+                        'id': $('#id').val(),
+                        'pwd': $('#pwd').val()
+                    },
                     /*   data: {
                            'id': $('#id').val(),
                            'pwd': $('#pwd').val() // json방식 둘중에 하나 사용
@@ -71,13 +74,13 @@
                         if (data.trim() == 'fail') {
                             alert("아이디 혹은 비밀번호가 틀렸습니다.")
                         } else {
-                            alert(data.trim() + "님 로그인 성공");
-                            $('span').text(data.trim());
-                            // location.href = '../index.jsp';
+                            alert(data.trim() + "님 로그인");
+                            location.href = '../index.jsp';
                         }
                     },
                     error: function (e) {
                         console.log(e);
+                        alert("로그인 요청 중 오류가 발생했습니다.")
                     }
                 });
             }

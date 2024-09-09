@@ -9,7 +9,7 @@
 <%
     String name = null;
     String id = null;
-    //쿠키
+  /*  //쿠키
     Cookie[] ar =request.getCookies(); //특정 쿠키만을 가져오지 못하고, 모든 쿠키들을 다 가져온다.
 
     if(ar!=null){
@@ -26,6 +26,8 @@
             }
         } //for
     } //if
-
+*/
+    name = (String)session.getAttribute("memName"); //자식 = (자식)부모
+    id = (String)session.getAttribute("memId");
 %>
 <%=name%>
